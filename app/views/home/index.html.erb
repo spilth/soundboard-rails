@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row mt-4">
+    <% @sounds.each do |sound| %>
+      <div class="col-sm-6 col-md-4 mt-4">
+        <button class="btn btn-success btn-lg btn-block btn-sound" onclick="playSound('<%= sound.id %>');">
+          <%= sound.title %>
+        </button>
+      </div>
+    <% end %>
+    <div class="col-md-4 mt-4">
+      <button class="btn btn-danger btn-lg btn-block btn-sound" onclick="stopSounds();">
+        Stop!
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sounds = [
+    <% @sounds.each do |sound| %>
+      {src: "<%= url_for(sound.audio) %>", id: '<%= sound.id %>'},
+  <% end %>
+  ]
+
+  createjs.defaultInterruptBehavior = createjs.Sound.INTERRUPT_ANY;
+  createjs.Sound.registerSounds(sounds, "", 0);
+
+  function playSound(soundID) {
+    createjs.Sound.play(soundID);
+  }
+
+  function stopSounds() {
+    createjs.Sound.stop();
+  }
+</script>
+
