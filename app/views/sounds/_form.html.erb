@@ -19,6 +19,15 @@
   <div class="form-group">
     <%= form.label :audio %>
     <%= form.file_field :audio, class: 'form-control' %>
+    <p class="form-text text-muted">To convert a YouTube clip to an MP3 file:
+<pre>
+$ brew install youtube-dl
+$ brew install ffmpeg
+$ youtube-dl --extract-audio --audio-format mp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ -o "rickroll.%(ext)s"
+</pre>
+
+    </p>
+
   </div>
 
   <%= form.submit class: "btn btn-success" %>
