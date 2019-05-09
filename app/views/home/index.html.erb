@@ -9,10 +9,13 @@
         </button>
       </div>
     <% end %>
-    <div class="col-md-4 mt-4">
+    <div class="col-sm-6 col-md-4 mt-4">
       <button class="btn btn-danger btn-lg btn-block btn-sound" onclick="stopSounds();">
         Stop!
       </button>
+    </div>
+    <div class="col-sm-6 col-md-4 mt-4">
+      <%= link_to "Manage Sounds", sounds_path, class: "btn btn-warning btn-lg btn-block btn-sound" %>
     </div>
   </div>
 </div>

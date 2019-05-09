@@ -3,7 +3,7 @@ class SoundsController < ApplicationController
 
   # GET /sounds
   def index
-    @sounds = Sound.all
+    @sounds = Sound.all.order(:title)
   end
 
   # GET /sounds/1
