@@ -5,7 +5,7 @@
     <div class="container">
     <form class="form-inline ml-auto">
       <input id="volume" type="range" min="0" max="100" value="100" class="mr-4" oninput="changeVolume(this);">
-      <button class="btn btn-danger mr-4" title="Stop" onclick="stopSounds();">
+      <button type="button" class="btn btn-danger mr-4" title="Stop" onclick="stopSounds();">
         <i class="fas fa-stop fa-fw"></i>
       </button>
       <%= link_to sounds_path, class: "btn btn-warning mr-4", title: "Manage" do %>
