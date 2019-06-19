@@ -1,5 +1,5 @@
 class SoundsController < ApplicationController
-  http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD']
+  http_basic_authenticate_with name: ENV['USERNAME'], password: ENV['PASSWORD'], except: :show
   before_action :set_sound, only: [:show, :edit, :update, :destroy]
 
   # GET /sounds

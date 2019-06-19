@@ -11,3 +11,11 @@
   <%= link_to 'Edit', edit_sound_path(@sound) %> |
 <%= link_to 'Back', sounds_path %>
 </p>
+
+<% content_for :head  do %>
+  <meta property="og:title" content="<%= @sound.title %>"/>
+  <meta property="og:type" content="music.song"/>
+  <meta property="og:url" content="<%= sound_url(@sound) %>"/>
+  <meta property="og:audio" content="<%= rails_blob_url(@sound.audio) %>"/>
+  <meta property="og:site_name" content="C5 Soundboard"/>
+<% end %>
