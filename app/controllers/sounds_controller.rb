@@ -24,6 +24,17 @@ class SoundsController < ApplicationController
   def create
     @sound = Sound.new(sound_params)
 
+    if @sound.url
+      filename = @sound.title.parameterize
+      system "youtube-dl --extract-audio --audio-format mp3 #{@sound.url} -o '#{filename}.%(ext)s'"
+
+      @sound.audio.attach(
+        io: File.open(Rails.root.join("#{filename}.mp3")),
+        filename: "#{filename}.mp3",
+        content_type: 'audio/mp3'
+      )
+    end
+
     if @sound.save
       redirect_to @sound, notice: 'Sound was successfully created.'
     else
@@ -47,13 +58,14 @@ class SoundsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sound
-      @sound = Sound.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def sound_params
-      params.require(:sound).permit(:title, :audio)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sound
+    @sound = Sound.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def sound_params
+    params.require(:sound).permit(:title, :audio, :url)
+  end
 end
