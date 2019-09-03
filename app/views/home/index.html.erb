@@ -19,7 +19,7 @@
     <% @sounds.each do |sound| %>
       <div class="col-sm-6 col-md-4 mt-4">
         <button class="btn btn-success btn-lg btn-block btn-sound" onclick="playSound('<%= sound.id %>');">
-          <i class="fas fa-play fa-fw"></i> <%= sound.title %>
+          <%= sound.title %>
         </button>
       </div>
     <% end %>
