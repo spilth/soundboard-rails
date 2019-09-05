@@ -5,6 +5,11 @@ class Sound < ApplicationRecord
   validate :audio_presence
   validate :audio_content
 
+  def audio_url
+    Rails.application.routes.url_helpers
+      .rails_blob_url(audio, only_path: true)
+  end
+
   private
 
   def audio_presence
